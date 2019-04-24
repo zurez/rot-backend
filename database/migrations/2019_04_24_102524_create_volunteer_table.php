@@ -16,7 +16,7 @@ class CreateVolunteerTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('event_id');
-            $table->enum(['active','declined'])->default('active');
+             $table->enum('status',['active','declined'])->default('active');
             $table->timestamps();
         });
     }

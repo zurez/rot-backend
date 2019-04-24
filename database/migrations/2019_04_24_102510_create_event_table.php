@@ -16,8 +16,8 @@ class CreateEventTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('max_volunteer')->default(10);
-            $table->enum(['active','status'])->default('active');
-            $table->enum(['participation'])
+            $table->enum('status',['active','pending','deleted'])->default('active');
+            $table->enum('type',['participation','view'])->default('participation');
             $table->string('description');
             $table->string('address');
             $table->string('organiser');

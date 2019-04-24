@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/','UserController');
+
+
+Route::get('/gallery','ApiController@gallery');
+Route::get('gallery/{$id}','ApiController@gallery_id');
