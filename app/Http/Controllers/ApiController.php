@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Gallery;
 use App\GalleryImage;
 use App\Message;
+use App\NewsLetter;
+use App\Bearers;
+use App\User;
+
 class ApiController extends Controller
 {
    public function gallery()
@@ -32,5 +36,19 @@ class ApiController extends Controller
       
        return response()->json($gallery);
    
+   }
+
+   public function newsletter()
+   {
+    return response()->json(NewsLetter::all());
+   }
+
+   public function bearers()
+   {
+        $bearers=Bearers::all();
+        foreach ($bearers as $b) {
+            $b->user=User::find($b->user_id);
+        }
+       return response()->json($bearers);
    }
 }

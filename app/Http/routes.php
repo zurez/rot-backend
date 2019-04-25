@@ -29,3 +29,5 @@ Route::get('events/{id}','ApiController@event');
 Route::get('bearers','ApiController@bearers');
 
 Route::get('profile/{number}','ApiController@profile');
+
+Route::get('newsletter','ApiController@newsletter');
