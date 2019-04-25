@@ -15,4 +15,17 @@ Route::resource('/','UserController');
 
 
 Route::get('/gallery','ApiController@gallery');
-Route::get('gallery/{$id}','ApiController@gallery_id');
+
+Route::get('gallery/{id}','ApiController@galleryimage');
+
+Route::get('messages','ApiController@messages');
+
+Route::get('messages/{id}','ApiController@message');
+
+Route::get('events','ApiController@events');
+
+Route::get('events/{id}','ApiController@event');
+
+Route::get('bearers','ApiController@bearers');
+
+Route::get('profile/{number}','ApiController@profile');
