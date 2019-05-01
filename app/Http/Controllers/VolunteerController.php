@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Volunteer;
 use Input;
-class UserController extends Controller
+class VolunteerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +17,35 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        $volunteers=Volunteer::join('users','users.id','=','volunteer.id')
+        ->join('event','event.id','=','volunteer.event_id')
+        ->get()
+        ;
+  
+        return view('volunteers',compact('volunteers'));
     }
+
+    public function single($user_id)
+    {
+        $volunteers=Volunteer::join('users','users.id','=','volunteer.id')
+        ->join('event','event.id','=','volunteer.event_id')
+        ->where('volunteer.user_id',$user_id)
+        ->orderBy('volunteer.created_at','DESC')
+        ->get()
+        ;
+  
+        return response()->json(['status'=>'success','data'=>$volunteers]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $r)
+    public function create()
     {
-
+        
     }
 
     /**
@@ -37,14 +55,22 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+
+    {
+
+        $does_exist=Volunteer::where('user_id',$request->user_id)
+        ->where('event_id',$request->event_id)
+        ->first();
+        if(sizeof((array)$does_exist)>0){
+            return 'notok';
+        }
         try {
-            User::create(Input::except('_token'));
+                Volunteer::create(Input::except('_token'));
              return redirect()->back();
         } catch (\Exception $e) {
-            return 'Email must be unique';
-        }
-        
+            dd($e);
+        }  
+
     }
 
     /**
@@ -90,18 +116,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function login(Request $r)
-    {
-        $user=User::where('phone',$r->phone)
-
-        ->first();
-
-        if(sizeof((array)$user)>0){
-            return response()->json(['status'=>'success','user'=>$user]);
-        }else{
-            return response()->json(['status'=>'error']);
-        }
     }
 }

@@ -1,37 +1,46 @@
 
 @extends('layout')
-<h4>Sign Up</h4>	
+<h4>Add an Event</h4>	
 <div id="register-page" class="row">
 	<div class="col s12 z-depth-6 card-panel">
 		
 
-			{!! Form::open(['url'=>url('/'),'class'=>'register-form']) !!}
+			{!! Form::open(['url'=>url('/event'),'class'=>'register-form']) !!}
 			
 
 			<div class="row margin">
 				<div class="input-field col s6">
 					
-					<input id="user_title" type="text" class="validate" name="name">
-					<label for="user_title" class="center-align">Member Name:</label>
+					<input id="user_title" type="text" class="validate" name="title">
+					<label for="user_title" class="center-align">Title:</label>
 				</div>
 
 				<div class="input-field col s6">
 					
-					<input id="user_spouse" type="text" class="validate" name="spouse">
-					<label for="user_spouse" class="center-align">Spouse Name:</label>
+					<input id="user_spouse" type="number" class="validate" name="max_volunteer" value="10" >
+					<label for="user_spouse" class="center-align">
+					Max Volunteer:</label>
 				</div>
 			</div>
 
 						<div class="row margin">
 				<div class="input-field col s6">
+					<select id="user_joining"
+					class="validate" name="type" 
+					>
+						<option value="participation" selected="">
+							Participation
+						</option>
+						<option value="view">View</option>
+					</select>
 					
-					<input id="user_joining" type="text" onfocus="(this.type='date')" class="validate" name="joining">
-					<label for="user_joining" class="center-align">Year of Joining Rotary</label>
+					<label for="user_joining" class="center-align">
+					Event Type</label>
 				</div>
 
 				<div class="input-field col s6">
 					
-					<input id="user_title" type="text" onfocus="(this.type='date')" class="validate" name="dob">
+					<textarea id="user_title" name="description"></textarea>
 					<label for="user_title" class="center-align">DOB</label>
 				</div>
 			</div>

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-use Input;
-class UserController extends Controller
+use App\Event;
+
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        //
+        return view('event');
     }
 
     /**
@@ -25,9 +26,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $r)
+    public function create()
     {
-
+        //
     }
 
     /**
@@ -37,15 +38,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         try {
-            User::create(Input::except('_token'));
+            Event::create(Input::except('_token'));
              return redirect()->back();
         } catch (\Exception $e) {
             return 'Email must be unique';
-        }
-        
-    }
+        }    }
 
     /**
      * Display the specified resource.
@@ -90,18 +89,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function login(Request $r)
-    {
-        $user=User::where('phone',$r->phone)
-
-        ->first();
-
-        if(sizeof((array)$user)>0){
-            return response()->json(['status'=>'success','user'=>$user]);
-        }else{
-            return response()->json(['status'=>'error']);
-        }
     }
 }

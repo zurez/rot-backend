@@ -12,6 +12,8 @@ use App\Message;
 use App\NewsLetter;
 use App\Bearers;
 use App\User;
+use App\Volunteer;
+
 
 class ApiController extends Controller
 {
@@ -50,5 +52,18 @@ class ApiController extends Controller
             $b->user=User::find($b->user_id);
         }
        return response()->json($bearers);
+   }
+
+   public function volunteer(Requests $r)
+   {
+    $does_exist=Volunteer::where('event_id',$r->event_id)->where('user_id',$r->user_id)->get();
+
+    if(sizeof($does_exist)>0){return 'notok';}
+       $v= new Volunteer;
+       $v->user_id=$r->user_id;
+       $v->event_id=$r->event_id;
+       $v->save();
+
+       return 'ok';
    }
 }

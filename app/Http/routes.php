@@ -12,7 +12,9 @@
 */
 
 Route::resource('/','UserController');
+Route::resource('event','EventController');
 
+Route::resource('volunteer','VolunteerController');
 
 Route::get('/gallery','ApiController@gallery');
 
@@ -31,3 +33,7 @@ Route::get('bearers','ApiController@bearers');
 Route::get('profile/{number}','ApiController@profile');
 
 Route::get('newsletter','ApiController@newsletter');
+
+Route::post('login','UserController@login');
+
+Route::get('volunteer/single/{user_id}','VolunteerController@single');
