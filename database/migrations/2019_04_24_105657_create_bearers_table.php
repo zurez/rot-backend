@@ -23,7 +23,7 @@ class CreateBearersTable extends Migration
             $table->string('image_url');
             $table->string('url');
             $table->string('phone');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

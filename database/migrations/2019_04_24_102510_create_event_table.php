@@ -22,7 +22,7 @@ class CreateEventTable extends Migration
             $table->string('address');
             $table->string('organiser');
             $table->integer('user_id');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

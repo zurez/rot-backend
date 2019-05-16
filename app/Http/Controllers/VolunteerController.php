@@ -31,6 +31,7 @@ class VolunteerController extends Controller
         ->join('event','event.id','=','volunteer.event_id')
         ->where('volunteer.user_id',$user_id)
         ->orderBy('volunteer.created_at','DESC')
+        ->select('event.title','volunteer.created_at')
         ->get()
         ;
   
@@ -61,14 +62,15 @@ class VolunteerController extends Controller
         $does_exist=Volunteer::where('user_id',$request->user_id)
         ->where('event_id',$request->event_id)
         ->first();
+       
         if(sizeof((array)$does_exist)>0){
-            return 'notok';
+            return response()->json(['status'=>'notok']);
         }
         try {
                 Volunteer::create(Input::except('_token'));
-             return redirect()->back();
+            return response()->json(['status'=>'ok']);
         } catch (\Exception $e) {
-            dd($e);
+            return response()->json(['status'=>'notok','message'=>$e->getMessage()]);
         }  
 
     }

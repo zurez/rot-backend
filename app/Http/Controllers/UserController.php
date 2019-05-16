@@ -42,6 +42,7 @@ class UserController extends Controller
             User::create(Input::except('_token'));
              return redirect()->back();
         } catch (\Exception $e) {
+            dd($e);
             return 'Email must be unique';
         }
         

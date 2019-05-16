@@ -16,7 +16,7 @@ class CreateGalleryimageTable extends Migration
             $table->increments('id');
             $table->integer('gallery_id');
             $table->string('title'); //used as url
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

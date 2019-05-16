@@ -17,7 +17,7 @@ class CreateNewsletterTable extends Migration
             $table->string('title');
             $table->string('fileurl');
             $table->string('url');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

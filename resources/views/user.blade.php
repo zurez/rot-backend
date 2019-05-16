@@ -1,5 +1,13 @@
 
 @extends('layout')
+@section('css')
+<style>
+.btn-submit{background:#26a69a; width:100%;border-radius:4px;border:0px;padding:10px;color:#fff;font-weight:600;    cursor: pointer;}
+.btn-submit:hover{background:#2bbbad;}
+.btn-submit:active{background:#75f1e5;}
+</style>
+@stop
+@section('content')
 <h4>Sign Up</h4>	
 <div id="register-page" class="row">
 	<div class="col s12 z-depth-6 card-panel">
@@ -7,7 +15,7 @@
 
 			{!! Form::open(['url'=>url('/'),'class'=>'register-form']) !!}
 			
-
+			<input type="hidden" name="password" value="lol">
 			<div class="row margin">
 				<div class="input-field col s6">
 					
@@ -76,7 +84,7 @@
 
 			<div class="row">
 				<div class=" col s12">
-					<input type="submit" class="btn waves-effect waves-light col s12 input-field" value="Save">
+					<input type="submit" class="btn-submit" value="Save">
 				</div>
 				
 			</div>
@@ -84,7 +92,7 @@
 	</div>
 </div>
 
-
+@stop
 
 @section('script')
 

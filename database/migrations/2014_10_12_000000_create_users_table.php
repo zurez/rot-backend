@@ -17,15 +17,15 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->string('spouse');
-            $table->date('joining');
-            $table->date('dob');
-            $table->date('sdob');
-            $table->date('wedding');
-            $table->string('job');
-            $table->string('phone');
+            $table->string('spouse')->nullable();
+            $table->date('joining')->nullable();
+            $table->date('dob')->nullable();
+            $table->date('sdob')->nullable();
+            $table->date('wedding')->nullable();
+            $table->string('job')->nullable();
+            $table->string('phone')->unique();
             $table->rememberToken();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

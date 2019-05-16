@@ -13,8 +13,8 @@ use App\NewsLetter;
 use App\Bearers;
 use App\User;
 use App\Volunteer;
-
-
+use App\Timeline;
+use DB;
 class ApiController extends Controller
 {
    public function gallery()
@@ -32,9 +32,15 @@ class ApiController extends Controller
        return response()->json(GalleryImage::where('gallery_id',$gallery_id)->get());
    }
 
-   public function messages()
+   public function messages($user_id=null)
    {
        $gallery=Message::all();
+
+       ;
+       if($user_id){
+       // $gallery=$gallery->where('volunteer.user_id',$user_id)->where('');
+       }
+       
       
        return response()->json($gallery);
    
@@ -58,12 +64,28 @@ class ApiController extends Controller
    {
     $does_exist=Volunteer::where('event_id',$r->event_id)->where('user_id',$r->user_id)->get();
 
-    if(sizeof($does_exist)>0){return 'notok';}
+    if(sizeof($does_exist)>0){
+      return response()->json(['status'=>'notok']);
+    }
        $v= new Volunteer;
        $v->user_id=$r->user_id;
        $v->event_id=$r->event_id;
        $v->save();
 
-       return 'ok';
+       return response()->json(['status'=>'ok','user_id'=>$r->user_id,'event_id'=>$r->event_id]);
+   }
+
+
+   public function timeline()
+   {
+      $timeline=DB::select(DB::raw("
+          SELECT timeline.date as time,
+          timeline.title,
+          timeline.description
+          FROM 
+          timeline
+          order by timeline.date desc
+        "));
+      return response()->json(['timeline'=>$timeline]);
    }
 }

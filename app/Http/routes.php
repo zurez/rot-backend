@@ -20,7 +20,7 @@ Route::get('/gallery','ApiController@gallery');
 
 Route::get('gallery/{id}','ApiController@galleryimage');
 
-Route::get('messages','ApiController@messages');
+Route::get('messages/{user_id?}','ApiController@messages');
 
 Route::get('messages/{id}','ApiController@message');
 
@@ -37,3 +37,5 @@ Route::get('newsletter','ApiController@newsletter');
 Route::post('login','UserController@login');
 
 Route::get('volunteer/single/{user_id}','VolunteerController@single');
+
+Route::get('timeline','ApiController@timeline');

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessageTable extends Migration
+class CreateTimelineTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CreateMessageTable extends Migration
      */
     public function up()
     {
-        Schema::create('message', function (Blueprint $table) {
+        Schema::create('timeline', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('event_id');
             $table->string('title');
             $table->string('description');
-            $table->string('image');
-            $table->string('url');
-            $table->string('subtitle');
-            $table->nullableTimestamps();
+            $table->date('date');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +28,6 @@ class CreateMessageTable extends Migration
      */
     public function down()
     {
-        Schema::drop('message');
+        Schema::drop('timeline');
     }
 }

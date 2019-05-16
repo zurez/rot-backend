@@ -44,7 +44,8 @@ class EventController extends Controller
              return redirect()->back();
         } catch (\Exception $e) {
             return 'Email must be unique';
-        }    }
+        }   
+    }
 
     /**
      * Display the specified resource.
