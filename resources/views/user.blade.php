@@ -13,7 +13,7 @@
 	<div class="col s12 z-depth-6 card-panel">
 		
 
-			{!! Form::open(['url'=>url('/'),'class'=>'register-form']) !!}
+			{!! Form::open(['url'=>url('/'),'class'=>'register-form','id'=>'userform']) !!}
 			
 			<input type="hidden" name="password" value="lol">
 			<div class="row margin">
@@ -84,7 +84,9 @@
 
 			<div class="row">
 				<div class=" col s12">
-					<input type="submit" class="btn-submit" value="Save">
+					<button class="btn waves-effect waves-light right submit" type="submit" name="action">Submit
+                                              <i class="mdi-content-send right"></i>
+                                            </button>
 				</div>
 				
 			</div>
@@ -97,15 +99,19 @@
 @section('script')
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
+
 
   // Or with jQuery
 
   $(document).ready(function(){
-    $('select').formSelect();
+  	$('#userform').submit(function(e){
+  		e.preventDefault();
+  		var a=$("#userform").validate();
+        console.log({a})
+
+  	})
+  	
+
   });
 	</script>
 	@stop
