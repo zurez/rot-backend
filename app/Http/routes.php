@@ -39,3 +39,14 @@ Route::post('login','UserController@login');
 Route::get('volunteer/single/{user_id}','VolunteerController@single');
 
 Route::get('timeline','ApiController@timeline');
+
+// Views
+
+Route::get('add/{name}',function($view){
+	return view($view);
+});
+
+// POST
+
+Route::post('bearer','AddController@bearer');
+Route::post('message','MessageController@message');

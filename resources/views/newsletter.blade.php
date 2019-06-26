@@ -1,20 +1,5 @@
-
-
-<!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <style>.form-container{width:31%!Important;margin:auto;} </style>
-    </head>
-
-    <body>
-    	<div class="form-container">
-<h4>Message</h4>	
+@extends('layout')
+<h4>Add a News Letter</h4>	
 <div id="register-page" class="row">
 	<div class="col s12 z-depth-6 card-panel">
 		<form class="register-form">        
@@ -52,28 +37,7 @@
 		</form>
 	</div>
 </div>
-</div>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
-      <!--JavaScript at end of body for optimized loading-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
-	</script>
-    </body>
-  </html>
+@stop
         
 
 

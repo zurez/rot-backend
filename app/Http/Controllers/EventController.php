@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Event;
-
+use Input;
 class EventController extends Controller
 {
     /**
@@ -43,7 +43,8 @@ class EventController extends Controller
             Event::create(Input::except('_token'));
              return redirect()->back();
         } catch (\Exception $e) {
-            return 'Email must be unique';
+            return $e->getMessage();
+    
         }   
     }
 
